@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import LoginHOC from '../dist/react-login-hoc'
+import LoginHOC from '../dist/react-facebook-login-hoc'
 
 const configureLoginProps = {
   scope: 'public_profile',
