@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PropTypes, Component } from 'react'
 
 const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (WrapperComponent) => {
   return class extends Component {
@@ -10,6 +10,15 @@ const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (Wrappe
       version: version || 2.6,
       language: language || 'en_US',
       appId: appId || console.error('AppId Error: you must be have appId')
+    }
+
+    static propTypes = {
+      scope: PropTypes.string.isRequired,
+      appId: PropTypes.string.isRequired,
+      xfbml: PropTypes.bool,
+      cookie: PropTypes.bool,
+      version: PropTypes.number,
+      language: PropTypes.string
     }
 
     constructor(props) {
