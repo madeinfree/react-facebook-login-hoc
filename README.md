@@ -2,7 +2,8 @@
 
 ## What is ?
 
-React Facebook Login Higher Order Component for you to easily to initialize and use relative method.
+<!-- React Facebook Login Higher Order Component for you to easily to initialize and use relative method. -->
+Easily for you to append facebook **root dom** and **dependencies file**
 
 ## How to use ?
 
@@ -10,7 +11,7 @@ React Facebook Login Higher Order Component for you to easily to initialize and 
 npm install react-facebook-login-hoc
 ```
 
-## API
+## Exposed API
 
 * this.props.fb.status(cb :function)
 * this.props.fb.login(cb :function [,scope :object])
@@ -33,8 +34,9 @@ const configureLoginProps = {
 
 ```javascript
 import React, { Component } from 'react'
+import { render } from 'react-dom'
 
-import LoginHOC from '../dist/react-facebook-login-hoc'
+import LoginHOC from 'react-facebook-login-hoc'
 
 const configureLoginProps = {
   scope: 'public_profile',
@@ -76,10 +78,13 @@ class App extends Component {
         <button onClick={ this.checkLoginState.bind(this) }>Get Facebook Login Status</button>
         <button onClick={ this.loginFacebook.bind(this) }>Facebook Login</button>
         <button onClick={ this.logoutFacebook.bind(this) }>Facebook Logout</button>
-      </div>
+
     );
   }
 }
 
 export default LoginHOC(configureLoginProps)(App);
 ```
+
+# License
+MIT
