@@ -75,9 +75,3 @@ class App extends Component {
 export default LoginHOC(configureLoginProps)(App);
 
 ```
-
-## TODO
-
-* [ ] Documentation
-* [ ] Add PropTypes
-* [ ] Add facebook graph api
