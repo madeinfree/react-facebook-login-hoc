@@ -1,6 +1,6 @@
 {
   "name": "react-facebook-login-hoc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "for react facebook third-party login higher order component, easily for you to initialize and use facebook relative method quickly",
   "main": "dist/react-facebook-login-hoc.js",
   "scripts": {
