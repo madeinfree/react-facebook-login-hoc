@@ -4,11 +4,12 @@ const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (Wrappe
   return class extends Component {
 
     static defaultProps = {
-      scope: 'public_profile',
-      xfbml: false,
-      cookie: false,
-      version: 2.6,
-      language: 'en_US'
+      scope: scope || 'public_profile',
+      xfbml: xfbml || false,
+      cookie: cookie || false,
+      version: version || 2.6,
+      language: language || 'en_US',
+      appId: appId || console.error('AppId Error: you must be have appId')
     }
 
     constructor(props) {

@@ -13,7 +13,7 @@ describe('React', () => {
       cookie: false,
       version: 2.6,
       language: 'en_US',
-      appId: 'Your APP ID'
+      appId: '1293827123212'
     }
 
     @LoginHOC(configureLoginProps)
@@ -21,14 +21,25 @@ describe('React', () => {
       constructor(props) {
         super(props);
 
-        this.getLoginStatus = (cb) => this.getStatus(cb)
-        this.login = (cb, scope) => this.loginFacebook(cb, scope)
+        this.status = this.props.fb.status
+        this.login = this.props.fb.login
+      }
+      getStatus(response) {
+        if (response.authResponse) {
+          this.responseApi(response.authResponse);
+        }
+      }
+      checkLoginState() {
+        this.status(this.getStatus)
+      };
+      loginFacebook() {
+        this.login(this.getStatus)
       }
       render() {
         return (
           <div>
-            <button ref='status' onClick={ this.checkLoginState }>Get Facebook Login Status</button>
-            <button ref='login' onClick={ this.loginFacebook }>Facebook Login </button>
+            <button ref='status' onClick={ this.checkLoginState.bind(this) }>Get Facebook Login Status</button>
+            <button ref='login' onClick={ this.loginFacebook.bind(this) }>Facebook Login </button>
           </div>
         );
       }
@@ -39,15 +50,14 @@ describe('React', () => {
     })
 
     it('get correct props', () => {
-      const wrapper = TestUtils.renderIntoDocument(
-        <App />
-      )
+      const wrapperProps = shallow(<App />).first().node
 
-      expect(wrapper.props.scope).toEqual('public_profile')
-      expect(wrapper.props.xfbml).toEqual(false)
-      expect(wrapper.props.cookie).toEqual(false)
-      expect(wrapper.props.version).toEqual(2.6)
-      expect(wrapper.props.language).toEqual('en_US')
+      expect(wrapperProps.props.scope).toEqual('public_profile')
+      expect(wrapperProps.props.xfbml).toEqual(false)
+      expect(wrapperProps.props.cookie).toEqual(false)
+      expect(wrapperProps.props.version).toEqual(2.6)
+      expect(wrapperProps.props.language).toEqual('en_US')
+      expect(wrapperProps.props.appId).toEqual('1293827123212')
     })
 
     it('get corrent extend fb method type of function', () => {
