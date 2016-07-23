@@ -1,11 +1,12 @@
 # React Facebook Login HOC
+[![npm](https://img.shields.io/npm/v/react-facebook-login-hoc.svg?maxAge=2592000)](https://www.npmjs.com/package/react-facebook-login-hoc)
 
 ## What is ?
 
 <!-- React Facebook Login Higher Order Component for you to easily to initialize and use relative method. -->
 Easily for you to append facebook **root dom** and **dependencies file**
 
-## How to use ?
+## Installation
 
 ```
 npm install react-facebook-login-hoc
@@ -13,24 +14,37 @@ npm install react-facebook-login-hoc
 
 ## Exposed API
 
-* this.props.fb.status(cb :function)
-* this.props.fb.login(cb :function [,scope :object])
+* this.props.fb.status(callback(response): function) - callback function will response facebook login auth status
+
+* this.props.fb.login(callback(response): function [,scope: object]) - callback function will response login result
+
 * this.props.fb.logout()
+
+## default Props
+
+|    params    |   value  |             default value            |
+|:------------:|:--------:|:------------------------------------:|
+|     appId    |  string  |              Required                |
+|     scope    |  string  |           public_profile             |
+|     xfbml    |  boolean |                 false                |
+|     cookie   |  boolean |                 false                |
+|    version   |  string  |                  2.6                 |
+|    language  |  string  |                  en_US               |
 
 ## Configuration
 
 ```javascript
 const configureLoginProps = {
+  appId: 'Your APP ID',
   scope: 'public_profile, email',
   xfbml: false,
   cookie: false,
   version: 2.6,
-  language: 'en_US',
-  appId: 'Your APP ID'
+  language: 'en_US'
 }
 ```
 
-## Quick start
+## How to use ?
 
 ```javascript
 import React, { Component } from 'react'
@@ -78,7 +92,6 @@ class App extends Component {
         <button onClick={ this.checkLoginState.bind(this) }>Get Facebook Login Status</button>
         <button onClick={ this.loginFacebook.bind(this) }>Facebook Login</button>
         <button onClick={ this.logoutFacebook.bind(this) }>Facebook Logout</button>
-
     );
   }
 }
