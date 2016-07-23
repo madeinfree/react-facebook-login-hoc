@@ -64,6 +64,7 @@ describe('React', () => {
       const wrapperFbProps = shallow(<App />).first().node.props.fb;
       expect(typeof wrapperFbProps).toEqual('object')
       expect(typeof wrapperFbProps.login).toEqual('function')
+      expect(typeof wrapperFbProps.logout).toEqual('function')
       expect(typeof wrapperFbProps.status).toEqual('function')
     })
   })

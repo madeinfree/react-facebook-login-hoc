@@ -17,6 +17,7 @@ const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (Wrappe
 
       this.getLoginStatus = (cb) => this.getStatus(cb)
       this.login = (cb, scope) => this.loginFacebook(cb, scope)
+      this.logout = () => this.logoutFacebook()
     }
 
     getStatus(cb) {
@@ -27,6 +28,10 @@ const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (Wrappe
       window.FB.login(cb, scope)
     }
 
+    logoutFacebook() {
+      window.FB.logout()
+    }
+
     appendFbRoot() {
       const fbRoot = document.createElement('div');
       fbRoot.id = 'fb-root';
@@ -35,6 +40,7 @@ const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (Wrappe
 
     init() {
       window.fbAsyncInit = () => {
+        console.log('init')
         window.FB.init({
           version: `v${version}` || `v${this.props.version}`,
           appId: appId || this.props.appId,
@@ -69,7 +75,8 @@ const LoginHOC = ({ appId, version, language, xfbml, cookie, scope }) => (Wrappe
           { ...this.props }
           fb={ {
             status: this.getLoginStatus,
-            login: this.login
+            login: this.login,
+            logout: this.logout
           } } />
       )
     }
