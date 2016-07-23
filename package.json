@@ -9,6 +9,9 @@
     "build": "NODE_ENV=production node_modules/.bin/webpack -p --config webpack.config.build.js",
     "test": "mocha --compilers js:babel-core/register --watch --require ./test/setup.js"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "react",
     "login",
